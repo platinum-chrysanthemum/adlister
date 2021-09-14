@@ -21,6 +21,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     System.out.println(adId);
 
 
+
+
 }
 
 
