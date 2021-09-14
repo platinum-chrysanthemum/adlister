@@ -11,4 +11,6 @@ public interface Ads {
     Long insert(Ad ad);
 
     Ad getOne(long adId);
+
+    Ad getOne();
 }

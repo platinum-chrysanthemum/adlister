@@ -73,6 +73,7 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
+    @Override
     public Ad getOne(long adId) {
         String sql = "SELECT * FROM ads WHERE id = ?;";
         try {
@@ -86,4 +87,11 @@ public class MySQLAdsDao implements Ads {
         }
         return new Ad();
     }
+
+    @Override
+    public Ad getOne() {
+        return null;
+    }
+
+
 }

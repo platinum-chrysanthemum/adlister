@@ -20,7 +20,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     long adId = Long.parseLong(request.getParameter("id"));
     System.out.println(adId);
 
-
+    Ad ad = DaoFactory.getAdsDao().getOne();
 
 
 }

@@ -28,9 +28,10 @@ public class ListAdsDao implements Ads {
     }
 
     @Override
-    public Ad getOne(long adId) {
+    public Ad getOne() {
         return null;
     }
+
 
     private List<Ad> generateAds() {
         List<Ad> ads = new ArrayList<>();
