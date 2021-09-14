@@ -1,3 +1,4 @@
+<jsp:useBean id="ad" scope="request" type="com.sun.org.apache.xml.internal.security.signature.Manifest"/>
 <%--
   Created by IntelliJ IDEA.
   User: yoshipc
