@@ -14,16 +14,22 @@ import java.io.IOException;
 
 @WebServlet("/ads/view")
 public class ViewSingleAdServlet extends HttpServlet {
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    //ID of ad assigned to a variable
-    long adId = Long.parseLong(request.getParameter("id"));
-    System.out.println(adId);
+        //ID of ad assigned to a variable
+        long adId = Long.parseLong(request.getParameter("id"));
+        System.out.println(adId);
 
-    Ad ad = DaoFactory.getAdsDao().getOne();
+        // This should grab the ad based on its id
+        Ad ad = DaoFactory.getAdsDao().getOne(adId);
+
+        request.setAttribute("ad", ad);
+
+        //Should display the singular ad
+        request.getRequestDispatcher("/WEB-INF/ads/view.jsp").forward(request, response);
 
 
-}
+    }
 
 
 }
