@@ -4,9 +4,6 @@ import com.codeup.adlister.Config;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +15,9 @@ public class MySQLAdsDao implements Ads {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUser(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -58,11 +55,31 @@ public class MySQLAdsDao implements Ads {
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
-            rs.getLong("id"),
-            rs.getLong("user_id"),
-            rs.getString("title"),
-            rs.getString("description")
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description")
         );
+    }
+
+
+    public List<Ad> search(String searchTerm) {
+        //TODO:like clause would be good to use for query
+        // TODO:handle result sets here
+        //TODO:make connection to database
+
+
+        String query = "SELECT * FROM ads WHERE description AND title LIKE '%" + searchTerm + "%'";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving searched ads.", e);
+        }
     }
 
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {

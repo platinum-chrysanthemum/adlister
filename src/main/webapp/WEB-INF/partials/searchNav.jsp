@@ -1,3 +1,10 @@
+<head>
+    <style>
+        nav {
+
+        }
+    </style>
+</head>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -7,12 +14,9 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/login">Login</a></li>
             <li><a href="/logout">Logout</a></li>
-            <li><a href="/search"></a>
-                <form class="form-inline" method="GET" action="/search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </li>
+
+            <%--            Add search functionality in nav bar and then have them go to search page and
+            dispaly results there --%>
         </ul>
     </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
