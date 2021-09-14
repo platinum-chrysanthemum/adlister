@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/ads/view")
-public class ViewSingleAd extends HttpServlet {
+public class ViewSingleAdServlet extends HttpServlet {
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     //ID of ad assigned to a variable
