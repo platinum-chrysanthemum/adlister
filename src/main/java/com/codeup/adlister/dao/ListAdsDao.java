@@ -35,6 +35,7 @@ public class ListAdsDao implements Ads {
 
 
     public Ad getOne(long adId) {
+
         return null;
     }
 

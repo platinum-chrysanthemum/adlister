@@ -13,4 +13,8 @@ public interface Ads {
 
     //Designate type of method we're creating
     Object search(String searchTerm);
+
+    Ad getOne(long adId);
+
+    Ad getOne();
 }
