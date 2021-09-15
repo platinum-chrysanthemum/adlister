@@ -69,7 +69,7 @@ public class MySQLAdsDao implements Ads {
         //TODO:make connection to database
 
 
-        String query = "SELECT * FROM ads WHERE description AND title LIKE '%" + searchTerm + "%'";
+        String query = "SELECT * FROM ads WHERE title LIKE '%" + searchTerm + "%'";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
 

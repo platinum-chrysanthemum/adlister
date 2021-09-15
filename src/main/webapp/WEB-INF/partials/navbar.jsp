@@ -9,7 +9,7 @@
             <li><a href="/logout">Logout</a></li>
             <li><a href="/search"></a>
                 <form class="form-inline" method="GET" action="/search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchedAd">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </li>

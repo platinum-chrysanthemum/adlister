@@ -7,11 +7,15 @@
 </jsp:include>
 <body>
 <jsp:include page="partials/navbar.jsp" />
+<div class="container">
 <h1>Search An Ad Here</h1>
-<form action="/search" method="POST">
 
-
-
-</form>
+<c:forEach var="ad" items="${ads}">
+    <div class="col-md-6">
+        <h2>${ad.title}</h2>
+        <p>${ad.description}</p>
+    </div>
+</c:forEach>
+</div>
 </body>
 </html>

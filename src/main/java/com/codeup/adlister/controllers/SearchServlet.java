@@ -13,21 +13,19 @@ public class SearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        request.setAttribute("ads", DaoFactory.getAdsDao().search("${}"));
+        String searchedAd = request.getParameter("searchedAd");
 
-
-        //or
-        //response.redirect("/search)?
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("ads", DaoFactory.getAdsDao().search(searchedAd));
 
 
         //This should be accessing the search function i made in my MySQLAdsDao
         request.getRequestDispatcher("/WEB-INF/search.jsp").forward(request, response);
 
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }
