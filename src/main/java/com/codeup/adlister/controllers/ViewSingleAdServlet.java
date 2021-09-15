@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/ads/view")
+@WebServlet(urlPatterns = "/ads/view")
 public class ViewSingleAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -26,7 +26,7 @@ public class ViewSingleAdServlet extends HttpServlet {
         request.setAttribute("ad", ad);
 
         //Should display the singular ad
-        request.getRequestDispatcher("/WEB-INF/ads/view.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/viewAd.jsp").forward(request, response);
 
 
     }
