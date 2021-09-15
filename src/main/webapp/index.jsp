@@ -12,7 +12,7 @@
     <h1>Welcome to the Adlister!</h1>
 
     <c:forEach var="ad" items="${ads}">
-        <h2><c:out value="${ad.title}"/></h2>
+        <a href="/ads/view?id=${ad.id}"><h2><c:out value="${ad.title}"/></h2></a>
         <h2><c:out value="${ad.description}"/></h2>
     </c:forEach>
 </div>
