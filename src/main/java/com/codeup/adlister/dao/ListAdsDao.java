@@ -28,6 +28,12 @@ public class ListAdsDao implements Ads {
     }
 
     @Override
+
+    public List<Ad> search(String searchTerm) {
+        return null;
+    }
+
+
     public Ad getOne(long adId) {
         return null;
     }
@@ -36,6 +42,7 @@ public class ListAdsDao implements Ads {
     public Ad getOne() {
         return null;
     }
+
 
 
     private List<Ad> generateAds() {

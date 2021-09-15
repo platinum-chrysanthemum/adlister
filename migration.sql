@@ -33,3 +33,16 @@ CREATE TABLE ads_category (
                               FOREIGN KEY (ad_id) REFERENCES ads(id),
                               FOREIGN KEY (category_id) REFERENCES categories (id)
 );
+
+CREATE TABLE categories (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(220) NOT NULL UNIQUE,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE ads_category (
+    ad_id INTEGER UNSIGNED NOT NULL,
+    category_id INTEGER UNSIGNED NOT NULL,
+    FOREIGN KEY (ad_id) REFERENCES ads(id),
+    FOREIGN KEY (category_id) REFERENCES categories (id)
+);

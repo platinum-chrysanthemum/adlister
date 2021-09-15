@@ -10,7 +10,7 @@ public interface Ads {
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
 
-    Ad getOne(long adId);
 
-    Ad getOne();
+    //Designate type of method we're creating
+    Object search(String searchTerm);
 }

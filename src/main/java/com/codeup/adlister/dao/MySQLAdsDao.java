@@ -4,9 +4,6 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +60,26 @@ public class MySQLAdsDao implements Ads {
                 rs.getString("title"),
                 rs.getString("description")
         );
+    }
+
+
+    public List<Ad> search(String searchTerm) {
+        //TODO:like clause would be good to use for query
+        // TODO:handle result sets here
+        //TODO:make connection to database
+
+
+        String query = "SELECT * FROM ads WHERE title LIKE '%" + searchTerm + "%'";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving searched ads.", e);
+        }
     }
 
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
