@@ -11,14 +11,9 @@
 <div class="container">
     <h1>Welcome to the Adlister!</h1>
 
-    <c:forEach var="ad" items="{ads}">
-        <form class="bg-info" style="border: 1px aquamarine" action="ads/view">
-            <h2><c:out value="{ad.title}"/></h2>
-            <h2><c:out value="{ad.description}"/></h2>
-
-<%--            <input type="hidden" name="id" value="${ad.id}">--%>
-            <input class="btn btn-md btn-info" type="submit" value="Display Ad">
-        </form>
+    <c:forEach var="ad" items="${ads}">
+        <h2><c:out value="${ad.title}"/></h2>
+        <h2><c:out value="${ad.description}"/></h2>
     </c:forEach>
 </div>
 </body>
