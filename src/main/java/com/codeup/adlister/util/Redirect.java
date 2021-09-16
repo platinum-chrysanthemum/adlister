@@ -2,7 +2,7 @@ package com.codeup.adlister.util;
 
 public class Redirect {
 
-    public static String returnAdress(StringBuffer url, String query) {
+    public static String returnAddress(StringBuffer url, String query) {
         String webAddress = "";
         String urlToString = url.toString();
         if (!urlToString.isEmpty()) {
