@@ -26,7 +26,14 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public List<Ad> all() {
-        return null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads");
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
     }
 
     @Override
@@ -65,6 +72,8 @@ public class MySQLAdsDao implements Ads {
             return ad;
         } catch (SQLException e) {
             throw new RuntimeException("Error finding an ad by id", e);
+        }
+    }
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
@@ -101,33 +110,34 @@ public class MySQLAdsDao implements Ads {
             ads.add(extractAd(rs));
 
         }
+        return ads;
     }
 
-        @Override
-        public void deleteAd(int id ){
-            String del = "Delete FROM ads WHERE id = ?";
-            try {
-                PreparedStatement stmt = connection.prepareStatement(del);
-                stmt.setInt(1, id);
-                stmt.executeUpdate();
-            } catch (SQLException e) {
-                throw new RuntimeException("Error with delete function", e);
-            }
+    @Override
+    public void deleteAd(int id) {
+        String del = "Delete FROM ads WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(del);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error with delete function", e);
         }
-            @Override
-            public void updateAds (Ad ads){
-                String query = "UPDATE ads SET title = ?, description = ? WHERE id LIKE ?";
-                try {
-                    PreparedStatement stmt = connection.prepareStatement(query);
-                    stmt.setString(1, ads.getTitle());
-                    stmt.setString(2, ads.getDescription());
-                    stmt.setLong(3, ads.getId());
-                    stmt.executeUpdate();
-                } catch (SQLException sqle) {
-                    throw new RuntimeException("could not update ad");
-                }
+    }
+
+    @Override
+    public void updateAds(Ad ads) {
+        String query = "UPDATE ads SET title = ?, description = ? WHERE id LIKE ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, ads.getTitle());
+            stmt.setString(2, ads.getDescription());
+            stmt.setLong(3, ads.getId());
+            stmt.executeUpdate();
+        } catch (SQLException sqle) {
+            throw new RuntimeException("could not update ad");
         }
-}
+    }
 
 
     @Override
