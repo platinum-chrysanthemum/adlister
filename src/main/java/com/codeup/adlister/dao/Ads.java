@@ -14,12 +14,10 @@ public interface Ads {
     void deleteAd(int id);
     void updateAds(Ad ad);
 
-
-
     //Designate type of method we're creating
     Object search(String searchTerm);
-
-    Ad getOne(long adId);
-
-    Ad getOne();
+//
+//    Ad getOne(long adId);
+//
+//    Ad getOne();
 }

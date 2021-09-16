@@ -8,6 +8,7 @@
             <li><a href="/register">Register</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/logout">Logout</a></li>
+            <li><a href ="/register">Register</a></li>
             <li><a href="/search"></a>
                 <form class="form-inline" method="GET" action="/search">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchedAd">
