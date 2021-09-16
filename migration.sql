@@ -30,6 +30,7 @@ CREATE TABLE categories (
                             id INT UNSIGNED NOT NULL AUTO_INCREMENT,
                             name VARCHAR(220) NOT NULL UNIQUE,
                             PRIMARY KEY (id)
+
 );
 
 CREATE TABLE ads_category (
