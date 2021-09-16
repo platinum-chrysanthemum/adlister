@@ -33,7 +33,11 @@ public class MySQLAdsDao implements Ads {
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
+
             throw new RuntimeException("Error retrieving all adds.", e);
+
+            throw new RuntimeException("Error retrieving all ads.", e);
+
         }
     }
 
@@ -99,6 +103,18 @@ public class MySQLAdsDao implements Ads {
         } catch (SQLException e) {
             throw new RuntimeException("Error finding an ad by id", e);
         }
+
+
+    }
+
+    private Ad extractAd(ResultSet rs) throws SQLException {
+        return new Ad(
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description")
+        );
+
     }
     public List<Ad> search(String searchTerm) {
         //TODO:like clause would be good to use for query
@@ -113,6 +129,7 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving searched ads.", e);
         }
     }
+
 
         @Override
         public void deleteAd(int id ){
@@ -144,8 +161,43 @@ public class MySQLAdsDao implements Ads {
                 } catch (SQLException sqle) {
                     throw new RuntimeException("could not update ad");
                 }
+
+    private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
+        List<Ad> ads = new ArrayList<>();
+        while (rs.next()) {
+            ads.add(extractAd(rs));
+
         }
-}
+        return ads;
+    }
+
+    @Override
+    public void deleteAd(int id) {
+        String del = "Delete FROM ads WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(del);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error with delete function", e);
+        }
+    }
+
+    @Override
+    public void updateAds(Ad ads) {
+        String query = "UPDATE ads SET title = ?, description = ? WHERE id LIKE ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, ads.getTitle());
+            stmt.setString(2, ads.getDescription());
+            stmt.setLong(3, ads.getId());
+            stmt.executeUpdate();
+        } catch (SQLException sqle) {
+            throw new RuntimeException("could not update ad");
+
+        }
+    }
+
 
 
 //    @Override
@@ -170,4 +222,27 @@ public class MySQLAdsDao implements Ads {
 //
 //
 //}
+
+    @Override
+    public Ad getOne(long adId) {
+        String sql = "SELECT * FROM ads WHERE id = ?;";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setLong(1, adId);
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+            return extractAd(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Ad();
+    }
+
+    @Override
+    public Ad getOne() {
+        return null;
+    }
+
+}
+
 
