@@ -73,4 +73,16 @@ public class MySQLUsersDao implements Users {
         );
     }
 
+    @Override
+    //function to check database if username already exits
+    public Boolean confirm(User user){
+        if(findByUsername(user.getUsername()) != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
 }
