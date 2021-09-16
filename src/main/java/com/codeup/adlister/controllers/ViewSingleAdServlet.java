@@ -12,10 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.codeup.adlister.util.Redirect.returnAddress;
+
 @WebServlet(urlPatterns = "/ads/view")
 public class ViewSingleAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        if (request.getSession().getAttribute("user") == null) {
+            String address = returnAddress(request.getRequestURL(), request.getQueryString());
+            response.sendRedirect("/login?returnTo=" + address);
+            return;
+        }
+        
         //ID of ad assigned to a variable
         long adId = Long.parseLong(request.getParameter("id"));
         System.out.println(adId);
@@ -27,6 +34,8 @@ public class ViewSingleAdServlet extends HttpServlet {
 
         //Should display the singular ad
         request.getRequestDispatcher("/WEB-INF/viewAd.jsp").forward(request, response);
+
+
 
 
     }
