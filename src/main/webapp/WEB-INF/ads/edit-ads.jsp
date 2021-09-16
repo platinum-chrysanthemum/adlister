@@ -21,7 +21,7 @@
         <label for="description">Description</label>
         <textarea id="description" name="description" class="form-control"> ${ad.description}</textarea>
     </div>
-    <button> Save Changes </button>
+    <button class="save-btn"> Save Changes </button>
 </form>
 </body>
 </html>
