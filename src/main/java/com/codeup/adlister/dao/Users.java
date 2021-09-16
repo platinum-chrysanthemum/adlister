@@ -8,4 +8,9 @@ public interface Users {
     User findByUsername(String username);
     Long insert(User user);
     public List<Ad> getUserAds(long id);
+
+
+    public Boolean confirm(User user);
+
+
 }
