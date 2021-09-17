@@ -7,6 +7,7 @@ import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.List;
 
@@ -72,5 +73,19 @@ public class MySQLUsersDao implements Users {
             rs.getString("password")
         );
     }
+
+    @Override
+    //function to check database if username already exits
+    public Boolean confirm(User user){
+        if(findByUsername(user.getUsername()) != null){
+            return true;
+        }
+        else{
+            return false;
+
+
+        }
+    }
+
 
 }
