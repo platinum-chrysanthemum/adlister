@@ -24,7 +24,7 @@
         <p><c:out value="${ad.description}"/></p>
     </div>
 
-<%--    <input type="hidden" name="redirect" value="${redirect}">--%>
+    <input type="hidden" name="redirect" value="${redirect}">
 </form>
 </body>
 </html>

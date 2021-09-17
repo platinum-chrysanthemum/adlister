@@ -22,20 +22,18 @@ public class ViewSingleAdServlet extends HttpServlet {
             response.sendRedirect("/login?returnTo=" + address);
             return;
         }
-        
+
         //ID of ad assigned to a variable
         long adId = Long.parseLong(request.getParameter("id"));
         System.out.println(adId);
 //
-//        // This should grab the ad based on its id
-////        Ad ad = DaoFactory.getAdsDao().getOne(adId);
-//
-//        request.setAttribute("ad", ad);
+        // This should grab the ad based on its id
+        Ad ad = DaoFactory.getAdsDao().getOne(adId);
+
+        request.setAttribute("ad", ad);
 
         //Should display the singular ad
         request.getRequestDispatcher("/WEB-INF/viewAd.jsp").forward(request, response);
-
-
 
 
     }
