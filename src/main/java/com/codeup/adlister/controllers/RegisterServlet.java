@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
 import java.io.IOException;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
@@ -39,9 +40,10 @@ public class RegisterServlet extends HttpServlet {
 
 
         if (DaoFactory.getUsersDao().confirm(user)) {
-            response.sendRedirect("/register");
+            response.sendRedirect("/register?error=User already exists.");
             return;
         }
+
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
 
