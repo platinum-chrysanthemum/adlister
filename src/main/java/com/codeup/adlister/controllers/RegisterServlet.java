@@ -2,12 +2,14 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
+import com.codeup.adlister.util.Password;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
 import java.io.IOException;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
@@ -24,9 +26,9 @@ public class RegisterServlet extends HttpServlet {
 
         // validate input
         boolean inputHasErrors = username.isEmpty()
-            || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+                || email.isEmpty()
+                || password.isEmpty()
+                || (!password.equals(passwordConfirmation));
 
         if (inputHasErrors) {
             response.sendRedirect("/register");
@@ -35,7 +37,18 @@ public class RegisterServlet extends HttpServlet {
 
         // create and save a new user
         User user = new User(username, email, password);
+
+
+        if (DaoFactory.getUsersDao().confirm(user)) {
+            response.sendRedirect("/register?error=User already exists.");
+            return;
+        }
+
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
+
     }
 }
+
+
+

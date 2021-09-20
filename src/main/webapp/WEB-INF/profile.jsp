@@ -18,6 +18,19 @@
                 <p><c:out value="${ad.description}"/></p>
             </div>
     </div>
-
+<%--<div class="block-list">--%>
+<%--    <c:forEach var="ad" items="${sessionScope.user.id}">--%>
+<%--        <div class="card">--%>
+<%--            <h2>${ad.title}</h2>--%>
+<%--            <p>--%>
+<%--                ${ad.description}--%>
+<%--            </p>--%>
+<%--            <c:forEach var="category" items="${ad.categories}">--%>
+<%--                <span class="pill">${category}</span>--%>
+<%--            </c:forEach>--%>
+<%--            <a href="/">View more</a>--%>
+<%--            <a href="/WEB-INF/ads/edit-ads.jsp"--%>
+<%--    </c:forEach>--%>
+</div>
 </body>
 </html>

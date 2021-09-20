@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLAdsDao implements Ads {
-    private Connection connection = null;
+    private Connection connection;
 
     public MySQLAdsDao(Config config) {
         try {
@@ -54,6 +54,28 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+
+    @Override
+    public Ad getAdById(int id) {
+        Ad ad = null;
+        String query = "SELECT * From ads where id = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                ad = new Ad(
+                        rs.getLong("id"),
+                        rs.getLong("user_id"),
+                        rs.getString("title"),
+                        rs.getString("description"));
+            }
+            return ad;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding an ad by id", e);
+        }
+    }
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
                 rs.getLong("id"),
@@ -87,9 +109,37 @@ public class MySQLAdsDao implements Ads {
         List<Ad> ads = new ArrayList<>();
         while (rs.next()) {
             ads.add(extractAd(rs));
+
         }
         return ads;
     }
+
+    @Override
+    public void deleteAd(int id) {
+        String del = "Delete FROM ads WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(del);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error with delete function", e);
+        }
+    }
+
+    @Override
+    public void updateAds(Ad ads) {
+        String query = "UPDATE ads SET title = ?, description = ? WHERE id LIKE ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, ads.getTitle());
+            stmt.setString(2, ads.getDescription());
+            stmt.setLong(3, ads.getId());
+            stmt.executeUpdate();
+        } catch (SQLException sqle) {
+            throw new RuntimeException("could not update ad");
+        }
+    }
+
 
     @Override
     public Ad getOne(long adId) {
@@ -111,5 +161,5 @@ public class MySQLAdsDao implements Ads {
         return null;
     }
 
-
 }
+

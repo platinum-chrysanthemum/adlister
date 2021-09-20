@@ -1,11 +1,19 @@
 package com.codeup.adlister.dao;
 
 
+
 import com.codeup.adlister.Config;
+
+
+import com.codeup.adlister.models.Ad;
+
+
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
+import javax.swing.*;
 import java.sql.*;
+import java.util.List;
 
 public class MySQLUsersDao implements Users {
     private Connection connection;
@@ -53,6 +61,17 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+    @Override
+
+    public void update(User user) {
+
+    }
+
+
+    public List<Ad> getUserAds(long id) {
+        return null;
+    }
+
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
             return null;
@@ -64,5 +83,19 @@ public class MySQLUsersDao implements Users {
             rs.getString("password")
         );
     }
+
+    @Override
+    //function to check database if username already exits
+    public Boolean confirm(User user){
+        if(findByUsername(user.getUsername()) != null){
+            return true;
+        }
+        else{
+            return false;
+
+
+        }
+    }
+
 
 }

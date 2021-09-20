@@ -23,6 +23,8 @@
         <h1><c:out value="${ad.title}"/></h1>
         <p><c:out value="${ad.description}"/></p>
     </div>
+
+    <input type="hidden" name="redirect" value="${redirect}">
 </form>
 </body>
 </html>

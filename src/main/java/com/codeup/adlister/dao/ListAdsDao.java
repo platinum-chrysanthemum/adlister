@@ -1,7 +1,9 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +30,26 @@ public class ListAdsDao implements Ads {
     }
 
     @Override
+    public Ad getAdById(int id) {
+        return null;
+    }
+
+    @Override
+    public void deleteAd(int id) {
+
+    }
+
+    @Override
+    public void updateAds(Ad ad) {
+
+    }
+
+    @Override
 
     public List<Ad> search(String searchTerm) {
         return null;
     }
+
 
 
     public Ad getOne(long adId) {
@@ -45,33 +63,44 @@ public class ListAdsDao implements Ads {
     }
 
 
-
     private List<Ad> generateAds() {
         List<Ad> ads = new ArrayList<>();
-        ads.add(new Ad(
-            1,
-            1,
-            "playstation for sale",
-            "This is a slightly used playstation"
-        ));
-        ads.add(new Ad(
-            2,
-            1,
-            "Super Nintendo",
-            "Get your game on with this old-school classic!"
-        ));
-        ads.add(new Ad(
-            3,
-            2,
-            "Junior Java Developer Position",
-            "Minimum 7 years of experience required. You will be working in the scripting language for Java, JavaScript"
-        ));
-        ads.add(new Ad(
-            4,
-            2,
-            "JavaScript Developer needed",
-            "Must have strong Java skills"
-        ));
+//        ads.add(new Ad(
+//            1,
+//            1,
+//            "playstation for sale",
+//            "This is a slightly used playstation"
+//        ));
+//        ads.add(new Ad(
+//            2,
+//            1,
+//            "Super Nintendo",
+//            "Get your game on with this old-school classic!"
+//        ));
+//        ads.add(new Ad(
+//            3,
+//            2,
+//            "Junior Java Developer Position",
+//            "Minimum 7 years of experience required. You will be working in the scripting language for Java, JavaScript"
+//        ));
+//        ads.add(new Ad(
+//            4,
+//            2,
+//            "JavaScript Developer needed",
+//            "Must have strong Java skills"
+//        ));
+
+//    public Ad getOne(long adId) {
+//
+//        return null;
+//    }
+//
+//    @Override
+//    public Ad getOne() {
+//        return null;
+//    }
+
         return ads;
+
     }
 }
