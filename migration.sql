@@ -1,7 +1,12 @@
+DROP DATABASE IF EXISTS adlister_db;
+CREATE DATABASE IF NOT EXISTS adlister_db;
+
 USE adlister_db;
 
 DROP TABLE IF EXISTS ads;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS ads_category;
 
 CREATE TABLE users (
                        id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -25,6 +30,7 @@ CREATE TABLE categories (
                             id INT UNSIGNED NOT NULL AUTO_INCREMENT,
                             name VARCHAR(220) NOT NULL UNIQUE,
                             PRIMARY KEY (id)
+
 );
 
 CREATE TABLE ads_category (
@@ -32,17 +38,4 @@ CREATE TABLE ads_category (
                               category_id INTEGER UNSIGNED NOT NULL,
                               FOREIGN KEY (ad_id) REFERENCES ads(id),
                               FOREIGN KEY (category_id) REFERENCES categories (id)
-);
-
-CREATE TABLE categories (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  name VARCHAR(220) NOT NULL UNIQUE,
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE ads_category (
-    ad_id INTEGER UNSIGNED NOT NULL,
-    category_id INTEGER UNSIGNED NOT NULL,
-    FOREIGN KEY (ad_id) REFERENCES ads(id),
-    FOREIGN KEY (category_id) REFERENCES categories (id)
 );
