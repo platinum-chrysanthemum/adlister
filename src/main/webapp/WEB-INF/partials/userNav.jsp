@@ -1,8 +1,9 @@
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="/ads">Adlister</a>
+            <a class="navbar-brand" href="/ads"> <img src="/img/IMG_F73BA76EA788-1.jpeg" width="100px" height="100px" alt="LOGO"/></a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/profile">Profile</a></li>
