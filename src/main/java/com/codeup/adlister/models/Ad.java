@@ -15,6 +15,11 @@ public class Ad {
         this.description = description;
     }
 
+
+
+    public Ad(long userId, String title, String description) {
+        this.userId = userId;
+
     public Ad(long id, long user_Id, String title, String description, List<String> categories) {
         this.id = id;
         this.userId = user_Id;
@@ -25,6 +30,7 @@ public class Ad {
 
     public Ad(long user_id, String title, String description) {
         this.userId = user_id;
+
         this.title = title;
         this.description = description;
     }

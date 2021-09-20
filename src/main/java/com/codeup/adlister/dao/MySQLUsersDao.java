@@ -58,6 +58,12 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
+
+    public void update(User user) {
+
+    }
+
+
     public List<Ad> getUserAds(long id) {
         return null;
     }

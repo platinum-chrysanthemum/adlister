@@ -1,5 +1,8 @@
 package com.codeup.adlister.controllers;
 
+import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.User;
+
 import static com.codeup.adlister.util.Redirect.returnAddress;
 
 import javax.servlet.ServletException;
