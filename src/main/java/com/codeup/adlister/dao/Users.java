@@ -7,4 +7,9 @@ import java.util.List;
 public interface Users {
     User findByUsername(String username);
     Long insert(User user);
+
+    void update(User user);
+
+    //function to check database if username already exits
+    Boolean confirm(User user);
 }

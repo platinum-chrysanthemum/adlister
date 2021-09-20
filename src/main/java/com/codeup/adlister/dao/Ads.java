@@ -17,4 +17,5 @@ public interface Ads {
     Ad getOne(long adId);
 
     Ad getOne();
+
 }
