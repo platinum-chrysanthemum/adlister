@@ -12,7 +12,7 @@
     <h1>Welcome to the Adlister!</h1>
 
     <c:forEach var="ad" items="${ads}">
-        <a <c:out value="${ad.id}" /><h2><c:out value="${ad.title}"/></h2></a>
+        <a <c:out value="${ad.id}" /><h2><c:out value="${ad.title}"/></h2>
         <h2><c:out value="${ad.description}"/></h2>
     </c:forEach>
 </div>
